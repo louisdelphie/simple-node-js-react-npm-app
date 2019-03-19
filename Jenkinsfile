@@ -5,27 +5,19 @@ pipeline{
             args '-p 3000:3000'
         }
     }
+    environment {
+        CI = 'true'
+    }
     stages{
         stage('Build'){
             steps{
                 sh 'npm install'
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
         }
-    }
-    post{
-        always{
-            echo "========always========"
+        stage('Test'){
+            steps{
+                sh './jenkins/scripts/test.sh'
+            }
         }
         success{
             echo "========pipeline executed successfully ========"
