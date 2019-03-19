@@ -19,11 +19,5 @@ pipeline{
                 sh './jenkins/scripts/test.sh'
             }
         }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
-        }
     }
 }
